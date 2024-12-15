@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0;
+            padding: 0;
+        }
+        .box1 {
+            background-color: #0f0f0fd7;
+            color: white;
+            font-family: poppins;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            height: 500px;
+            width: 360px;
+        }
+
+        .box {
+            background: url('https://img.freepik.com/free-photo/gradient-painted-texture-illustration_23-2151867839.jpg');
+            background-size: cover;
+            height: 500px;
+            width: 660px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            font-family: poppins;
+        }
+
+        img {
+            animation: icon 3s linear infinite;
+        }
+
+        @keyframes icon {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .location {
+            margin-bottom: 3%;
+        }
+
+        .fa-location-dot {
+            margin-right: 10px;
+            color: rgb(255, 68, 0);
+        }
+
+        .info {
+            z-index: 2;
+            text-align: center;
+        }
+
+        h3 {
+            font-weight: 400;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 80%;
+            border-radius: 10px;
+            border: none;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .wave {
+            background: #ffffff74;
+            border-radius: 1000% 1000% 0 0;
+            position: absolute;
+            width: 200%;
+            height: 12em;
+            animation: wave 4s linear infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: -2.5em;
+            animation: wave 5s linear infinite;
+            opacity: 0.9;
+        }
+
+        .wave:nth-of-type(4) {
+            bottom: -1.25em;
+            animation: wave 7s linear reverse infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .line {
+            border: 2px solid rgb(170, 163, 163);
+            width: 80%;
+            margin-bottom: 6%;
+        }
+
+        .line1 {
+            border: 1px solid rgb(170, 163, 163);
+            width: 80%;
+
+        }
+
+        .tempr {
+            margin-bottom: 14px;
+        }
+
+        .box1 .temp {
+            width: 90%;
+            padding: 10px 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .weather-icon img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .temp i {
+            margin-right: 10px;
+        }
+
+        @media(max-width:1036px) {
+            .box {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 20px;
+            }
+
+            .box1 {
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                width: 660px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {{>header}}
+    <div class="container">
+        <div class="box">
+            <input type="text" id="search" class="search-bar" placeholder="Enter city name..." />
+            <div class="weather-icon"></div>
+            <div class="info">
+
+                <p id="date"></p>
+                <h1 class="tempr">{{tempval}}°C</h1>
+                <h3 class="tempmin_max">Min {{tempmin}}°C | Max {{tempmax}}°C</h3>
+            </div>
+
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <div class="box1">
+            <span class="location">
+                <h2>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="location">{{location}}, {{country}}</span>
+                </h2>
+            </span>
+            <div class="line"></div>
+            <div class="temp"><span><i class="fa-solid fa-temperature-three-quarters"></i>Feels Like
+                </span><span>{{temp}}°C</span></div>
+            <div class="line1"></div>
+            <div class="temp"><span><i class="fa-solid fa-droplet"></i>Humidity </span><span>{{hum}}%</span></div>
+            <div class="line1"></div>
+            <div class="temp"><span><i class="fa-regular fa-eye"></i>Visibility </span><span>{{vis}}m</span></div>
+            <div class="line1"><span></span></div>
+            <div class="temp"><span><i class="fa-solid fa-wind"></i>Wind Speed</span> <span>{{speed}}km/h</span></div>
+
+        </div>
+    </div>
+    {{>footer}}
+    <script>
+        const currDate = document.querySelector('#date');
+        const icon = document.querySelector('.weather-icon');
+
+        const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+        const d = new Date();
+        const date = d.getDate();
+        let day = weekday[d.getDay()];
+        let month = months[d.getMonth()];
+
+        let hours = d.getHours();
+        let min = d.getMinutes();
+        let period = "AM";
+        if (hours > 11) {
+            period = "PM";
+            if (hours > 12) {
+                hours = hours - 12;
+            }
+        }
+        if (min < 10) {
+            min = "0" + min;
+        }
+        if (hours < 10) {
+            hours = "0" + hours;
+        }
+        currDate.innerText = `${day} | ${month} ${date} | ${hours}:${min}${period}`;
+
+        const tempStatus = "{{status}}";
+
+        console.log("Current Hour: ", hours);
+
+        if (tempStatus === "Clear") {
+
+            if (d.getHours() >= 17 || d.getHours() < 6) {
+                // If it's after 6 PM or before 6 AM, show the night icon
+                icon.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/6805/6805164.png" alt="Night Clear Weather Icon">';
+                
+            } else {
+                icon.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png" alt="Day Clear Weather Icon">';
+
+            }
+        }
+        else if (tempStatus == "Clouds") {
+            icon.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/11574/11574216.png" alt="Cloudy Weather Icon">';
+        }
+        else if (tempStatus == "Rain") {
+            icon.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/5081/5081146.png" alt="Rain Weather Icon">';
+        }
+        else if (tempStatus == "Thunderstorm") {
+            icon.innerHTML = '<img src="https://img.favpng.com/19/7/12/computer-icons-thunderstorm-weather-cloud-png-favpng-V0B4bFKhgB0ELbS9L266P7MHh.jpg" alt="Thunderstorm Weather Icon">';
+        }
+        else if (tempStatus == "Snow") {
+            icon.innerHTML = '<img src="https://png.pngtree.com/png-vector/20230321/ourmid/pngtree-snow-clouds-with-snowflakes-vector-png-image_6657012.png" alt="Snow Weather Icon">';
+        }
+        else if (tempStatus == "Drizzle") {
+            icon.innerHTML = '<img src="https://icons-for-free.com/iff/png/512/drizzle+forecast+rain+rainfall+sun+weather+icon-1320195254549764468.png" alt="Drizzle Weather Icon">';
+        } else {
+            icon.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/8691/8691510.png" alt="Atmosphere Weather Icon">';
+        }
+
+
+        document.getElementById('search').addEventListener('keyup', function (e) {
+            if (e.key === 'Enter') {
+                const location = e.target.value;
+                window.location.href = `/weather?name=${location}`;//redirect to next page with given query
+            }
+        });
+    </script>
+    <script>
+    function toggleMenu() {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('open');
+    }
+  </script>
+
+</body>
+
+</html>

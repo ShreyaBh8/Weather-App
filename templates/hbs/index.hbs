@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  {{>header}}
+  <div class="container">
+    <div class="text">
+      <h5>Welcome to weather app</h5>
+      <h1 style="font-weight: bold;">Get The Latest <span>Weather</span> Info Of Your City</h1>
+      <a href="/weather">CHECK NOW</a>
+    </div>
+    <div class="carousel-container">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item " data-bs-interval="3000">
+            <img
+              src="https://img.freepik.com/free-vector/weather-concept-illustration_114360-1189.jpg"
+              alt="First slide">
+          </div>
+          <div class="carousel-item active" data-bs-interval="3000">
+            <img
+              src="https://png.pngtree.com/png-clipart/20230824/original/pngtree-meteorology-abstract-concept-vector-illustration-picture-image_8410403.png"
+              alt="Second slide">
+          </div>
+          <div class="carousel-item" data-bs-interval="3000" >
+            <img
+              src="https://img.freepik.com/premium-vector/weather-forecast-woman-concept-young-girl-with-umbrella-smartphone-screen-rainy-cloudy_1002658-4095.jpg?w=740"
+              alt="Third slide">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  {{>footer}}
+  <!-- Bootstrap Carousal -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  <script>
+    function toggleMenu() {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('open');
+    }
+  </script>
+</body>
+
+</html>
